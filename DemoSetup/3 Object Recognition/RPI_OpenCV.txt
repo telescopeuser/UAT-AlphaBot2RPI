@@ -1,0 +1,17 @@
+install OpenCV:
+https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/
+
+install TensorFlow:
+https://github.com/samjabrahams/tensorflow-on-raspberry-pi
+
+wget https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download/v1.4.0/tensorflow-1.4.0-cp35-cp35m-linux_armv7l.whl
+sudo pip3 install tensorflow-1.4.0-cp35-cp35m-linux_armv7l.whl
+
+
+
+solution for this error:
+OpenCV(3.4.1) Error: Assertion failed (scn == 3 || scn == 4) in cvtColor, file /home/pi/opencv-3.4.1/modules/imgproc/src/color.cpp, line 11115
+
+https://stackoverflow.com/questions/20822288/python-opencv-cv2-opencv-error-assertion-failed-scn-3-scn-4-in-unkno
+
+sudo modprobe bcm2835-v4l2
