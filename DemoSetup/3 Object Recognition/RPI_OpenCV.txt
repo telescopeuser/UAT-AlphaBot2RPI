@@ -30,16 +30,37 @@ After reboot, the system will load the module name stored in this file, and find
 sudo apt-get install libjpeg8
 
 
-# change RPI IP at:
+###################################################
+
+# change RPI IP at: http://192.168.137.204
 cd ~/AlphaBot2/mjpg-AlphaBot/
 sudo nano index.html
+cd ~/AlphaBot2/Web-Control
+sudo nano index.html
 
-# start video streaming:
-cd AlphaBot2/lib/mjpg-streamer
-sudo ./start.sh
-
-# start webiopi:
+# start webiopi: [Function] start web server: control servo only
+# http://192.168.137.204:8000/
 cd ~/AlphaBot2/mjpg-AlphaBot 
 sudo webiopi -c config
+
+# start Web-RGB: [Function] start web server: control LED color
+# http://192.168.137.204:8002/
+cd ~/AlphaBot2/Web-RGB
+sudo python main.py
+
+###################################################
+
+# start video streaming: [Function] stream video
+# http://192.168.137.204:8080/
+cd ~/AlphaBot2/lib/mjpg-streamer
+sudo ./start.sh
+
+# start Web-Control: [Function] start web server: control motor & servo
+# http://192.168.137.204:8001/
+cd ~/AlphaBot2/Web-Control
+sudo python main.py
+
+###################################################
+
 
 
