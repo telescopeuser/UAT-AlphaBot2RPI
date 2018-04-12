@@ -15,3 +15,13 @@ OpenCV(3.4.1) Error: Assertion failed (scn == 3 || scn == 4) in cvtColor, file /
 https://stackoverflow.com/questions/20822288/python-opencv-cv2-opencv-error-assertion-failed-scn-3-scn-4-in-unkno
 
 sudo modprobe bcm2835-v4l2
+
+
+
+For the camera with CSI interface, the system may be unable to find out the device under the directory of /dev/video0. In this case, you should add a line, bcm2835-v4l2, into the file /etc/modules.
+
+sudo nano /etc/modules 
+Add the line: bcm2835-v4l2
+
+After reboot, the system will load the module name stored in this file, and find out the device video0 under the directory of /dev. (Please take a notice that the letter l in the command bcm2835-v4l2 is the lower case of L.)
+
