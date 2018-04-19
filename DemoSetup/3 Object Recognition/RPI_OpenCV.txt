@@ -1,0 +1,66 @@
+install OpenCV:
+https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/
+
+install TensorFlow:
+https://github.com/samjabrahams/tensorflow-on-raspberry-pi
+
+wget https://github.com/samjabrahams/tensorflow-on-raspberry-pi/releases/download/v1.4.0/tensorflow-1.4.0-cp35-cp35m-linux_armv7l.whl
+sudo pip3 install tensorflow-1.4.0-cp35-cp35m-linux_armv7l.whl
+
+
+
+solution for this error:
+OpenCV(3.4.1) Error: Assertion failed (scn == 3 || scn == 4) in cvtColor, file /home/pi/opencv-3.4.1/modules/imgproc/src/color.cpp, line 11115
+
+https://stackoverflow.com/questions/20822288/python-opencv-cv2-opencv-error-assertion-failed-scn-3-scn-4-in-unkno
+
+sudo modprobe bcm2835-v4l2
+
+
+
+For the camera with CSI interface, the system may be unable to find out the device under the directory of /dev/video0. In this case, you should add a line, bcm2835-v4l2, into the file /etc/modules.
+
+sudo nano /etc/modules 
+Add the line: bcm2835-v4l2
+
+After reboot, the system will load the module name stored in this file, and find out the device video0 under the directory of /dev. (Please take a notice that the letter l in the command bcm2835-v4l2 is the lower case of L.)
+
+
+# how to install libjpeg.so.8 ?
+sudo apt-get install libjpeg8
+
+
+###################################################
+
+# change RPI IP at: http://192.168.137.204
+cd ~/AlphaBot2/mjpg-AlphaBot/
+sudo nano index.html
+cd ~/AlphaBot2/Web-Control
+sudo nano index.html
+
+# start webiopi: [Function] start web server: control servo only
+# http://192.168.137.204:8000/
+cd ~/AlphaBot2/mjpg-AlphaBot 
+sudo webiopi -c config
+
+# start Web-RGB: [Function] start web server: control LED color
+# http://192.168.137.204:8002/
+cd ~/AlphaBot2/Web-RGB
+sudo python main.py
+
+###################################################
+
+# start video streaming: [Function] stream video
+# http://192.168.137.204:8080/
+cd ~/AlphaBot2/lib/mjpg-streamer
+sudo ./start.sh
+
+# start Web-Control: [Function] start web server: control motor & servo
+# http://192.168.137.204:8001/
+cd ~/AlphaBot2/Web-Control
+sudo python main.py
+
+###################################################
+
+
+
